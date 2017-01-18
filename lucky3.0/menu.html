@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <style>
+        a{
+            text-decoration: none;
+            color: #c71c1b;
+
+        }
+        a:after{
+            color:#000;
+        }
+        #t{
+            margin:30px auto;
+            border-collapse: collapse;
+            color: #c71c1b;
+        }
+        #t td{
+            font-size:20px;
+            font-family: 黑体;
+        }
+
+        .t1{
+            padding:3px 0 3px 55px;;
+            text-align: left;;
+            width: 200px;
+            box-sizing: border-box;
+            border-top: 1px solid #ffbe3b;
+            border-left:1px solid #ffbe3b;;
+        }
+        .t2{
+            padding:3px 0 3px 40px;
+            text-align: left;
+            width:400px;
+            box-sizing: border-box;
+            border-top: 1px solid #ffbe3b;
+            border-left:1px solid #ffbe3b;
+            border-right:1px solid #ffbe3b;
+        }
+        .t3{
+            padding:3px 0 3px 40px;
+            border-right:1px solid #ffbe3b;
+        }
+        .t4{
+            padding:3px 0 3px 32px;;
+            text-align: left;;
+            width: 200px;
+            box-sizing: border-box;
+            border-top: 1px solid #ffbe3b;
+            border-left:1px solid #ffbe3b;;
+        }
+
+        .bh{
+            border-bottom: 1px solid #ffbe3b;
+            box-sizing: border-box;
+        }
+        .f1{
+            font-size: 50px;
+
+        }
+        .f{
+            color:#c71c1b;
+        }
+        .b1{
+            background-color: #ffe0a0;
+        }
+        .b2{
+            background-color: #ffce69;
+        }
+        .b3{
+            background-color: #ffbe3b;
+        }
+        .bb{
+            position: fixed;
+            left:100px;
+            top: 50%;
+            padding-top:5px;
+            padding-bottom:5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table id="t" cellpadding="0" cellspacing="0">
+            <tr>
+                <th class="t1 f1 f b1" >抽奖</th><th class="t4 f1 f b2">奖项</th><th class="t2 f1 f b3" >奖品名称</th>
+            </tr>
+            <tr>
+                <td rowspan="4" class="t1">第一轮</td>
+                <td rowspan="4" class="t4">幸运奖</td>
+                <td class="t2"><a href="lucky.html?type=luckyPrice&award=1" target="_blank">中原定制东莞地铁交通卡</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="lucky.html?type=luckyPrice&award=2" target="_blank">小米移动电源</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="lucky.html?type=luckyPrice&award=3" target="_blank">小米USB充电插座</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="lucky.html?type=luckyPrice&award=4" target="_blank">自发热磁疗护颈带</a></td>
+            </tr>
+            <tr>
+                <td class="t1" rowspan="2">第二轮</td>
+                <td rowspan="2" class="t4">200元现金红包</td>
+                <td class="t2"><a href="cash200.html?type=cash200&award=1" target="_blank">200元现金红包</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="cash200.html?type=cash200&award=2" target="_blank">200元现金红包</a></td>
+            </tr>
+            <tr>
+                <td class="t1" rowspan="3">第三轮</td>
+                <td rowspan="3" class="t4">四等奖</td>
+                <td class="t2"><a href="common.html?type=forthPrice&award=1" target="_blank">猴年定制千足银币30g</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="common.html?type=forthPrice&award=2" target="_blank">kindle墨水电子阅读器</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="common.html?type=forthPrice&award=3" target="_blank">罗莱家纺四件套</a></td>
+            </tr>
+            <tr>
+                <td class="t1" rowspan="3">第四轮</td>
+                <td rowspan="3" class="t4">三等奖</td>
+                <td class="t2"><a href="common.html?type=thirdPrice&award=1" target="_blank">华为金色商务版B2智能手环</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="third.html?type=thirdPrice&award=2" target="_blank">DW欧美轻奢时尚手表</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="third.html?type=thirdPrice&award=3" target="_blank">LG趣拍得照片打印机</a></td>
+            </tr>
+            <tr>
+                <td class="t1" rowspan="2">第五轮</td>
+                <td rowspan="2" class="t4">二等奖</td>
+                <td class="t2"><a href="second.html?type=secondPrice&award=1" target="_blank">坚果多功能家庭影院（家庭投影仪）</a></td>
+            </tr>
+            <tr>
+                <td class="t3"><a href="second.html?type=secondPrice&award=2" target="_blank">IPad mini4</a></td>
+            </tr>
+            <tr>
+                <td class="t1" rowspan="2">第六轮</td>
+                <td class="t4">一等奖</td>
+                <td class="t2"><a href="first.html?type=firstPrice&award=1" target="_blank">苹果6s手机</a></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 32px;">疯狂吸金奖</td>
+                <td class="t2"><a href="cash5000.html?type=cash5000&award=1" target="_blank">5000元现金，分10人吸金</a></td>
+            </tr>
+            <tr>
+                <td class="t1 bh" rowspan="2"  >第七轮</td>
+                <td class="t4">特等奖</td>
+                <td class="t2"><a href="special.html?type=specialPrice&award=1" target="_blank">新加坡+马来西亚5日4晚跟团游（双人）</a></td>
+            </tr>
+            <tr>
+                <td class="bh" style="padding-left: 32px;">疯狂吸金奖</td>
+                <td class="t2 bh"><a href="cash3000.html?type=cash3000&award=1" target="_blank">3000元现金，分3人吸金</a></td>
+            </tr>
+        </table>
+        <table style="display: none">
+            <tr>
+                <td><a href="lucky.html?type=luckyPrice&award=1" target="_blank">幸运奖（中原定制东莞地铁交通卡）</a></td>
+                <td><a href="lucky.html?type=luckyPrice&award=2" target="_blank">幸运奖（小米移动电源）</a></td>
+                <td><a href="lucky.html?type=luckyPrice&award=3" target="_blank">幸运奖（小米USB充电插座）</a></td>
+                <td><a href="lucky.html?type=luckyPrice&award=4" target="_blank">幸运奖（自发热磁疗护颈带）</a></td>
+                <td><a href="cash200.html?type=cash200" target="_blank">200元现金红包</a></td>
+                <td><a href="common.html?type=forthPrice&award=1" target="_blank">四等奖（猴年定制千足银币30g）</a></td>
+                <td><a href="common.html?type=forthPrice&award=2" target="_blank">四等奖（kindle墨水电子阅读器）</a></td>
+                <td><a href="common.html?type=forthPrice&award=3" target="_blank">四等奖（罗莱家纺四件套）</a></td>
+            </tr>
+            <tr>
+                <td><a href="common.html?type=thirdPrice&award=1" target="_blank">三等奖（华为金色商务版B2智能手环）</a></td>
+                <td><a href="third.html?type=thirdPrice&award=2" target="_blank">三等奖（DW欧美轻奢时尚手表）</a></td>
+                <td><a href="third.html?type=thirdPrice&award=3" target="_blank">三等奖（LG趣拍得照片打印机）</a></td>
+                <td><a href="second.html?type=secondPrice&award=1" target="_blank">二等奖（坚果多功能家庭影院（家庭投影仪））</a></td>
+                <td><a href="second.html?type=secondPrice&award=2" target="_blank">二等奖（IPad mini4）</a></td>
+                <td><a href="first.html?type=firstPrice&award=1" target="_blank">一等奖（苹果6s手机）</a></td>
+                <td><a href="cash5000.html?type=cash5000&award=1" target="_blank">疯狂吸金奖（5000元现金，分10人吸金）</a></td>
+                <td><a href="special.html?type=specialPrice&award=1" target="_blank">特等奖（新加坡+马来西亚5日4晚跟团游【双人】）</a></td>
+                <td><a href="cash3000.html?type=cash3000&award=1" target="_blank">疯狂吸金奖（3000元现金，分3人吸金）</a></td>
+            </tr>
+        </table>
+        <button class="bb" onclick="a()">重置名单</button>
+    </div>
+</body>
+<script>
+    function a(){
+        var result = confirm("确定要清空中奖名单吗？")
+        if(result){
+            localStorage.clear();
+            alert("清除成功");
+        }
+    }
+
+</script>
+</html>
