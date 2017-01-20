@@ -5,7 +5,7 @@ function Roller() {}
 Roller.prototype.rollerModel = new RollerModel();
 Roller.prototype.rollerView = new RollerView();
 Roller.prototype.init = function() {
-    this.rollerModel.init(1024);
+    this.rollerModel.init(350);
     var personArray = this.rollerModel.getNoWonList();
     var index = this.rollerModel.index;
     var award = this.rollerModel.award;

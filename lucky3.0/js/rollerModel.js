@@ -52,9 +52,6 @@ RollerModel.prototype.initList = function(number) {
         var manArray = this.noWonPersonsList;
         for (var i = 1, temp = ""; i <= number; i++) {
             temp = "" + i;
-            if (i < 1000) {
-                temp = "0" + i;
-            }
             if (i < 100) {
                 temp = "0" + temp;
             }
@@ -281,8 +278,10 @@ RollerModel.prototype.getNextLink = function() {
     var uri;
     if (amount == 1 || amount == 2) {
         uri = '1';
-    } else if (amount > 2 && amount < 20) {
+    } else if (amount > 2 && amount < 10) {
         uri = '6';
+    } else if (amount >= 10 && amount < 20) {
+        uri = '10';
     } else if (amount >= 20 && amount < 30) {
         uri = '20';
     } else if (amount >= 30) {

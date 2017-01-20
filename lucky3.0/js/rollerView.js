@@ -93,7 +93,7 @@ RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
             perRow = 4;
             break;
         case 10:
-            className = 'r2';
+            className = 'r6';
             perRow = 4;
             break;
         case 6:
