@@ -18,7 +18,7 @@ ul{
     height: 100%;
     background-image:url("../resource/image/bj.png");
     position:relative;
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 #header{
@@ -39,7 +39,7 @@ ul{
     color:#333333;
 }
 #roller{
-    font-size: 47px;
+    font-size: 45px;
     font-weight: bold;
     line-height: 194px;
     text-align: center;
@@ -111,19 +111,14 @@ ul{
     width: 140px;
     font-size: 32px;
     position: absolute;
-    right: 9%;
-    top: 27%;  
+    right: 10%;
+    top: 28%;
     color: #c71c1b;
 }
-#result,#result2,#result3,#result4,#result5,#result6{
+.result,.result2,.result3,.result4,.result5,.result6,.result7,.result30,.result40,.result50{
     position: absolute;
 }
-#result{
-    top: 44%;
-    width: 500px;
-    height: 400px;
-    left: 40%;
-}
+
 .r{
     font-size: 76px;
     padding-left: 103px;
@@ -132,7 +127,7 @@ ul{
     font-weight: bold;
     background-position-y: 14px;
 }
-#result2{
+.result2{
     top: 41%;
     width: 300px;
     height: 400px;
@@ -149,7 +144,7 @@ ul{
     padding: 11px 90px 5px 30px;
     background-position-y: 11px;
 }
-#result3{
+.result3{
     top: 44%;
     width: 450px;
     height: 400px;
@@ -157,7 +152,7 @@ ul{
 }
 
 
-.r,.r2,.r3,.r4,.r5,.r6{
+.r,.r2,.r3,.r4,.r5,.r6,.r30,.r40,.r50{
     color: #c71c1b;
     box-sizing: border-box;
     font-family: 黑体;
@@ -172,7 +167,7 @@ ul{
     padding-top: 3px;
     background-position-y: 6px;
 }
-#result4{
+.result4{
     top: 48%;
     width: 450px;
     left: 42%;
@@ -187,19 +182,16 @@ ul{
     padding-top: 0px;
     background-position-y: 10px;
 }
-#result5{
-    top: 305px;
-    width: 330px;
-    height: 400px;
-    left: 574px;
+.result5{
+    top: 44%;
+    left: 38%
 }
 .r5{
-    font-size: 76px;
-    padding-left: 103px;
-    padding-top: 26px;
-    background: no-repeat url("../resource/image/76.png");
+    font-size: 60px;
     font-weight: bold;
-    background-position-y: 14px;
+    background: no-repeat url("../resource/image/60.png");
+    padding: 0px 110px 48px 60px;
+    background-position-y: 13px;
 }
 
 .r6{
@@ -213,17 +205,67 @@ ul{
     padding: 25px 73px 55px 50px;
     background-position-y: 11px;
 }
-#result6{
+.result6{
     top: 353px;
     width: 300px;
     height: 400px;
     left: 491px;
 }
 
-#result7{
-    top: 48%;
-    width: 450px;
-    left: 42%;
+.result7{
+    top: 38%;
+    left: 30%
+}
+
+.result30{
+    top: 37%;
+    left: 32%;
+}
+
+.r30{
+    width: 130px;
+    font-size: 40px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 12px;
+    background: no-repeat url("../resource/image/5.png");
+    padding: 15px 190px 5px 30px;
+    background-position-y: 11px;
+}
+
+.result40{
+    top: 38%;
+    left: 30%
+}
+
+.r40{
+    width: 130px;
+    font-size: 40px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 12px;
+    background: no-repeat url(../resource/image/5.png);
+    padding: 11px 110px 5px 30px;
+    background-position-y: 11px;
+}
+
+.result50{
+    top: 38%;
+    left: 30%
+}
+
+.r50{
+    width: 130px;
+    font-size: 40px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 12px;
+    background: no-repeat url(../resource/image/5.png);
+    padding: 11px 60px 5px 30px;
+    background-position-y: 11px;
 }
 .top{
     z-index: 2;

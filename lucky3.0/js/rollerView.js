@@ -8,6 +8,7 @@ function RollerView() {
     this.rollerBK;
 }
 RollerView.prototype.turntable = document.getElementById("rollerSpan");
+RollerView.prototype.result = document.getElementById('result');
 RollerView.prototype.resultTable = document.getElementById("result2-table");
 RollerView.prototype.startButton = document.getElementById("startButton")
 RollerView.prototype.stopButton = document.getElementById("stopButton");
@@ -35,10 +36,8 @@ RollerView.prototype.initBK = function() {
     rollerBK.push("bk3");
     rollerBK.push("bk4");
     rollerBK.push("bk5");
-    //rollerBK.push("bk6");
-    //rollerBK.push("bk7");
-    //rollerBK.push("bk8");
 }
+
 RollerView.prototype.roll = function(index) {
     var that = this;
     that.index = index;
@@ -86,35 +85,53 @@ RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
     if (isSingle) {
         amount = 1;
     }
-    var className, perRow;
+    var className, resultClass, perRow;
     switch (amount) {
-        case 30:
-            className = 'r2';
+        case 50:
+            className = 'r50';
+            resultClass = 'result50';
+            perRow = 5;
+            break;
+        case 40:
+            className = 'r40';
+            resultClass = 'result40';
             perRow = 4;
+            break;
+        case 30:
+            className = 'r30';
+            resultClass = 'result30';
+            perRow = 3;
             break;
         case 10:
             className = 'r6';
+            resultClass = 'result6';
             perRow = 4;
             break;
         case 6:
             className = 'r3';
+            resultClass = 'result3';
             perRow = 2;
             break;
         case 5:
-            className = 'r3';
+            className = 'r5';
+            resultClass = 'result5';
             perRow = 2;
             break;
         case 2:
             className = 'r';
+            resultClass = 'result';
             perRow = 1;
             break;
         case 1:
             className = 'r4';
+            resultClass = 'result4';
             perRow = 1;
             break;
     }
+    var result = this.result;
     var table = this.resultTable;
     var tr, td;
+    result.className = resultClass;
     for (var i = 0, length = array.length; i < length; i++) {
         if (i % perRow == 0) {
             tr = document.createElement("tr");

@@ -1,11 +1,23 @@
 /**
- * Created by Administrator on 2016/2/19.
+ * Created by KmKm_hxm on 2016/2/19.
  */
-function Roller() {}
+function Roller() {
+    this.config = config;
+    this.partId = null;
+}
 Roller.prototype.rollerModel = new RollerModel();
 Roller.prototype.rollerView = new RollerView();
 Roller.prototype.init = function() {
-    this.rollerModel.init(350);
+    var data = {
+        dataList: [{
+            number: '5251',
+            name: '黄谢明'
+        }, {
+            number: '5253',
+            name: '莫钻豪'
+        }]
+    }
+    this.rollerModel.init(data);
     var personArray = this.rollerModel.getNoWonList();
     var index = this.rollerModel.index;
     var award = this.rollerModel.award;
@@ -32,7 +44,8 @@ Roller.prototype.addListener = function() {
     }
     nextButton.onclick = function() {
         var link = that.rollerModel.getNextLink();
-        window.location.href = link;
+        if (link)
+            window.location.href = link;
     }
     document.onkeydown = function(e) {
         var code = e.keyCode;
@@ -48,7 +61,33 @@ Roller.prototype.addListener = function() {
             that.toReTry();
         } else if (code == 39) {
             var link = that.rollerModel.getNextLink();
-            window.location.href = link;
+            if (link)
+                window.location.href = link;
+        } else if (code == 80) {
+            var result = confirm("确定要清空中奖名单吗？")
+            var params = {
+                code: that.config.code,
+                activityId: that.config.activityId
+            }
+            var url = that.config.url.removeActivityRecords;
+            if (result) {
+                localStorage.clear();
+                $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: params
+                    })
+                    .done(function() {
+                        alert("清除成功");
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+                    .always(function() {
+                        console.log("complete");
+                    });
+            }
         }
     }
 
@@ -161,6 +200,10 @@ Roller.prototype.stopMultiTimes = function(times) {
     var resultArray = this.rollerModel.resultCache;
     this.rollerView.showResult(flow.amount, flow.isSingle, resultArray);
     this.rollerView.updateCount(resultArray.length);
+    if (this.config.isSendToServer) {
+        var award = this.rollerModel.getAward();
+        this.sendToServer(award, resultArray);
+    }
 }
 
 Roller.prototype.stopForLuckyPrice = function() {
@@ -175,6 +218,50 @@ Roller.prototype.stopForLuckyPrice = function() {
     var resultArray = this.rollerModel.resultCache;
     this.rollerView.showResult(resultArray, this.rollerModel.priceType);
     this.rollerView.updateCount(resultArray.length);
+}
+
+Roller.prototype.sendToServer = function(award, winnerList) {
+    var _this = this;
+    var url = this.config.url.addWinners;
+    var winnerMapList = [];
+    var tempWinner;
+    var nameMap = this.rollerModel.nameMap;
+    var tempNumber;
+    for (var i in winnerList) {
+        tempWinner = new Object();
+        tempNumber = winnerList[i];
+        tempWinner.number = tempNumber;
+        if (nameMap) {
+            tempWinner.name = nameMap[tempNumber];
+        }
+        winnerMapList.push(tempWinner);
+    }
+    var params = {
+        code: this.config.code,
+        activityId: this.config.activityId,
+        winnerList: winnerMapList,
+        award: award
+    }
+    if (this.partId) {
+        params.partId = this.partId;
+    }
+    $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                paramsJSONString: JSON.stringify(params)
+            },
+        })
+        .done(function(data) {
+            _this.partId = data.partId;
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
 }
 
 Roller.prototype.toReTry = function() {

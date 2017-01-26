@@ -4,7 +4,8 @@
 function RollerModel() {
     this.noWonPersonsList;
     this.luckyList;
-    this.priceType;
+    this.nameMap;
+    // this.priceType;
     this.index = 0;
     this.flowIndex;
     this.flow;
@@ -12,11 +13,12 @@ function RollerModel() {
     this.award;
     this.retry;
     this.links;
+    this.isSendToServer;
 }
-RollerModel.prototype.init = function(number) {
-    this.flowIndex = this.getRequest('index');
+RollerModel.prototype.init = function(object) {
+    this.flowIndex = this.getRequest('index') || '0';
     this.flow = flow[this.flowIndex];
-    this.initList(number);
+    this.initList(object);
     this.initStorage();
     this.initAward();
     this.initLuckyList();
@@ -45,26 +47,44 @@ RollerModel.prototype.initLinks = function() {
     this.links = [""];
 }
 
-RollerModel.prototype.initList = function(number) {
+RollerModel.prototype.initList = function(object) {
     var noWonListInStorage = localStorage.getItem("noWonList");
     if (!noWonListInStorage) {
         this.noWonPersonsList = new Array();
         var manArray = this.noWonPersonsList;
-        for (var i = 1, temp = ""; i <= number; i++) {
-            temp = "" + i;
-            if (i < 100) {
-                temp = "0" + temp;
+        if (typeof(object) === 'number') {
+            var wei = 0;
+            for (var w = 0;; w++) {
+                if (object / (Math.pow(10, w)) >= 1) {
+                    wei++;
+                } else {
+                    break;
+                }
             }
-            if (i < 10) {
-                temp = "0" + temp;
+            for (var i = 1, temp = ""; i <= object; i++) {
+                temp = "" + i;
+                for (var twei = wei; twei > 1; twei--) {
+                    if (i < Math.pow(10, twei - 1)) {
+                        temp = '0' + temp;
+                    }
+                }
+                manArray.push(temp);
+                temp = "";
             }
-            manArray.push(temp);
-            temp = "";
+        } else {
+            var dataList = object.dataList;
+            var nameMap = new Object();
+            for (var p in dataList) {
+                manArray.push(dataList[p].number);
+                nameMap[dataList[p].number] = dataList[p].name;
+            }
+            this.nameMap = nameMap;
         }
     } else {
         var noWonListJSON = JSON.parse(noWonListInStorage);
         var noWonList = noWonListJSON.noWon;
         this.noWonPersonsList = noWonList;
+        this.nameMap = localStorage.getItem("nameMap");
     }
     if (this.flow.isSegment) {
         this.noWonPersonsList.sort(this.sortNumber);
@@ -74,6 +94,11 @@ RollerModel.prototype.initList = function(number) {
         this.noWonPersonsList.sort(this.random);
     }
 }
+
+RollerModel.prototype.getAward = function() {
+    return this.award;
+}
+
 RollerModel.prototype.random = function() {
     return Math.random() > .5 ? -1 : 1; //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
 }
@@ -131,23 +156,23 @@ RollerModel.prototype.isInList = function(index) {
     var allList = JSON.parse(all);
     var list = allList.all;
     var person = this.noWonPersonsList[index];
-    var type = this.priceType;
+    // var type = this.priceType;
     for (var i = 0, length = list.length; i < length; i++) {
         var temp = list[i];
         if (person == temp) {
             return true;
         }
-        if (type == "luckyPrice") {
-            var personsArray = this.noWonPersonsList;
-            for (var j = index + 1, t = 0; t < 50; t++, j++) {
-                if (j >= personsArray.length) {
-                    j = 0;
-                }
-                if (personsArray[j] == temp) {
-                    return true;
-                }
-            }
-        }
+        // if (type == "luckyPrice") {
+        //     var personsArray = this.noWonPersonsList;
+        //     for (var j = index + 1, t = 0; t < 50; t++, j++) {
+        //         if (j >= personsArray.length) {
+        //             j = 0;
+        //         }
+        //         if (personsArray[j] == temp) {
+        //             return true;
+        //         }
+        //     }
+        // }
     }
     return false;
 }
@@ -273,20 +298,10 @@ RollerModel.prototype.getNoWonList = function() {
 RollerModel.prototype.getNextLink = function() {
     var flowIndex = parseInt(this.flowIndex);
     var nextIndex = flowIndex + 1;
-    var nextFlow = flow[nextIndex];
-    var amount = nextFlow.amount;
-    var uri;
-    if (amount == 1 || amount == 2) {
-        uri = '1';
-    } else if (amount > 2 && amount < 10) {
-        uri = '6';
-    } else if (amount >= 10 && amount < 20) {
-        uri = '10';
-    } else if (amount >= 20 && amount < 30) {
-        uri = '20';
-    } else if (amount >= 30) {
-        uri = '30';
+    if (!flow[nextIndex]) {
+        alert('抽奖流程已结束！');
+        return null;
     }
-    uri = uri + '.html?index=' + nextIndex;
+    uri = 'index.html?index=' + nextIndex;
     return uri;
 }
