@@ -1,7 +1,7 @@
 var config = {
 	isSendToServer: true,
 	code: 'jweqwoidnn@!ppkacvbn',
-	isLuckListFromServer: false,
+	isLuckListFromServer: true,
 	activityId: 1,
 	url: {
 		addWinners: 'http://localhost:8888/LotterySystem/winner/addWinners',
