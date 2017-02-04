@@ -26,7 +26,7 @@ Roller.prototype.init = function() {
       if(this.config.isLuckListFromServer){
         getLuckyData(a.bind(this));
       }else{
-        data = 1024;
+        data = 350;
         a.bind(this)(true);
       }
     }
