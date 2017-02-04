@@ -18,7 +18,11 @@ function RollerModel() {
 RollerModel.prototype.init = function(object) {
     this.flowIndex = this.getRequest('index') || '0';
     this.flow = flow[this.flowIndex];
-    this.initList(object);
+    if(object){
+      this.initListFromData(object);
+    }else{
+      this.initListFromStorage();
+    }
     this.initStorage();
     this.initAward();
     this.initLuckyList();
@@ -47,52 +51,64 @@ RollerModel.prototype.initLinks = function() {
     this.links = [""];
 }
 
-RollerModel.prototype.initList = function(object) {
-    var noWonListInStorage = localStorage.getItem("noWonList");
-    if (!noWonListInStorage) {
-        this.noWonPersonsList = new Array();
-        var manArray = this.noWonPersonsList;
-        if (typeof(object) === 'number') {
-            var wei = 0;
-            for (var w = 0;; w++) {
-                if (object / (Math.pow(10, w)) >= 1) {
-                    wei++;
-                } else {
-                    break;
-                }
-            }
-            for (var i = 1, temp = ""; i <= object; i++) {
-                temp = "" + i;
-                for (var twei = wei; twei > 1; twei--) {
-                    if (i < Math.pow(10, twei - 1)) {
-                        temp = '0' + temp;
-                    }
-                }
-                manArray.push(temp);
-                temp = "";
-            }
-        } else {
-            var dataList = object.dataList;
-            var nameMap = new Object();
-            for (var p in dataList) {
-                manArray.push(dataList[p].number);
-                nameMap[dataList[p].number] = dataList[p].name;
-            }
-            this.nameMap = nameMap;
-        }
-    } else {
-        var noWonListJSON = JSON.parse(noWonListInStorage);
-        var noWonList = noWonListJSON.noWon;
-        this.noWonPersonsList = noWonList;
-        this.nameMap = localStorage.getItem("nameMap");
-    }
-    if (this.flow.isSegment) {
-        this.noWonPersonsList.sort(this.sortNumber);
-        this.initLuckyList();
+RollerModel.prototype.initListFromStorage = function () {
+  var noWonListInStorage = localStorage.getItem("noWonList");
+  var noWonListJSON = JSON.parse(noWonListInStorage);
+  var noWonList = noWonListJSON.noWon;
+  this.noWonPersonsList = noWonList;
+  this.nameMap = localStorage.getItem("nameMap");
+  if (this.flow.isSegment) {
+      this.noWonPersonsList.sort(this.sortNumber);
+      this.initLuckyList();
 
-    } else {
-        this.noWonPersonsList.sort(this.random);
-    }
+  } else {
+      this.noWonPersonsList.sort(this.random);
+  }
+}
+
+RollerModel.prototype.initListFromData = function (object) {
+  this.noWonPersonsList = new Array();
+  var manArray = this.noWonPersonsList;
+  if (typeof(object) === 'number') {
+      var wei = 0;
+      for (var w = 0;; w++) {
+          if (object / (Math.pow(10, w)) >= 1) {
+              wei++;
+          } else {
+              break;
+          }
+      }
+      for (var i = 1, temp = ""; i <= object; i++) {
+          temp = "" + i;
+          for (var twei = wei; twei > 1; twei--) {
+              if (i < Math.pow(10, twei - 1)) {
+                  temp = '0' + temp;
+              }
+          }
+          manArray.push(temp);
+          temp = "";
+      }
+  } else {
+      var dataList = object.dataList;
+      var nameMap = new Object();
+      for (var p in dataList) {
+          manArray.push(dataList[p].number);
+          nameMap[dataList[p].number] = dataList[p].name;
+      }
+      this.nameMap = nameMap;
+  }
+  if (this.flow.isSegment) {
+      this.noWonPersonsList.sort(this.sortNumber);
+      this.initLuckyList();
+
+  } else {
+      this.noWonPersonsList.sort(this.random);
+  }
+}
+
+RollerModel.prototype.isStorageExist = function () {
+    var noWonListInStorage = localStorage.getItem("noWonList");
+    return noWonListInStorage ? true : false;
 }
 
 RollerModel.prototype.getAward = function() {

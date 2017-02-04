@@ -8,21 +8,28 @@ function Roller() {
 Roller.prototype.rollerModel = new RollerModel();
 Roller.prototype.rollerView = new RollerView();
 Roller.prototype.init = function() {
-    var data = {
-        dataList: [{
-            number: '5251',
-            name: '黄谢明'
-        }, {
-            number: '5253',
-            name: '莫钻豪'
-        }]
+    var a = function (isLoadData) {
+      if(isLoadData){
+        this.rollerModel.init(data);
+      }else{
+        this.rollerModel.init();
+      }
+      var personArray = this.rollerModel.getNoWonList();
+      var index = this.rollerModel.index;
+      var award = this.rollerModel.award;
+      this.rollerView.init(personArray, index, award);
+      this.addListener();
     }
-    this.rollerModel.init(data);
-    var personArray = this.rollerModel.getNoWonList();
-    var index = this.rollerModel.index;
-    var award = this.rollerModel.award;
-    this.rollerView.init(personArray, index, award);
-    this.addListener();
+    if(this.rollerModel.isStorageExist()){
+        a.bind(this)(false);
+    }else{
+      if(this.config.isLuckListFromServer){
+        getLuckyData(a.bind(this));
+      }else{
+        data = 1024;
+        a.bind(this)(true);
+      }
+    }
 }
 
 Roller.prototype.addListener = function() {
