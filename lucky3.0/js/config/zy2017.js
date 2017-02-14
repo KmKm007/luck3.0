@@ -4,7 +4,7 @@ var config = {
 	isLuckListFromServer: true,
 	activityId: 1,
 	url: {
-		addWinners: 'http://localhost:8888/LotterySystem/winner/addWinners',
-		removeActivityRecords: 'http://localhost:8888/LotterySystem/activity/removeRecords'
+		addWinners: 'http://121.12.154.196:8888/LotterySystem/api/winner/addWinners',
+		removeActivityRecords: 'http://121.12.154.196:8888/LotterySystem/api/activity/removeRecords'
 	}
 }

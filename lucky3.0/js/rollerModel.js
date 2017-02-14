@@ -56,7 +56,7 @@ RollerModel.prototype.initListFromStorage = function () {
   var noWonListJSON = JSON.parse(noWonListInStorage);
   var noWonList = noWonListJSON.noWon;
   this.noWonPersonsList = noWonList;
-  this.nameMap = localStorage.getItem("nameMap");
+  this.nameMap = localStorage.getItem("nameMap") ? JSON.parse(localStorage.getItem("nameMap")) : null;
   if (this.flow.isSegment) {
       this.noWonPersonsList.sort(this.sortNumber);
       this.initLuckyList();
@@ -96,6 +96,7 @@ RollerModel.prototype.initListFromData = function (object) {
           nameMap[dataList[p].number] = dataList[p].name;
       }
       this.nameMap = nameMap;
+      localStorage.setItem('nameMap',JSON.stringify(nameMap));
   }
   if (this.flow.isSegment) {
       this.noWonPersonsList.sort(this.sortNumber);
@@ -309,6 +310,18 @@ RollerModel.prototype.getNoWonList = function() {
     } else {
         return this.noWonPersonsList;
     }
+}
+
+RollerModel.prototype.getNameArray = function (resultArray) {
+    var nameArray = [],
+        length = resultArray.length;
+    var nameMap = this.nameMap,
+        tempName;
+    for(var i = 0; i < length; i++) {
+        tempName = nameMap[resultArray[i]];
+        nameArray.push(tempName);
+    }
+    return nameArray;
 }
 
 RollerModel.prototype.getNextLink = function() {

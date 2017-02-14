@@ -15,6 +15,7 @@ ul{
     border:1px solid #333;
 }
 #main{
+    max-width: 1920px;
     height: 100%;
     background-image:url("../resource/image/bj.png");
     position:relative;
@@ -75,10 +76,10 @@ ul{
 }
 
 #startButton,#stopButton{
-    position: absolute;
-    right: 5.5%;
-    bottom: 8%;
-    width: 8%;
+  position: absolute;
+  right: 8%;
+  bottom: 13%;
+  width: 8%;
 }
 #startButton{
 
@@ -87,10 +88,11 @@ ul{
 
 }
 #restartButton{
-    position: absolute;
-    bottom: 20%;
-    left: 3.5%;
-    width: 8%;
+  position: absolute;
+  bottom: 12%;
+  left: 3.5%;
+  width: 10%;
+}
 }
 #nextButton{
     position: absolute;
@@ -112,10 +114,10 @@ ul{
     font-size: 32px;
     position: absolute;
     right: 10%;
-    top: 28%;
+    top: 30%;
     color: #c71c1b;
 }
-.result,.result2,.result3,.result4,.result5,.result6,.result7,.result10,.result20,.result30,.result40,.result50{
+.result,.result2,.result3,.result4,.result5,.result6,.result7,.result10,.result15,.result20,.result30,.result40,.result50{
     position: absolute;
 }
 
@@ -129,12 +131,10 @@ ul{
 }
 .result2{
     top: 44%;
-    left: 41%;
+    left: 35%;
 }
 .r2{
-  width: 130px;
   font-size: 118px;
-  height: 35px;
   font-weight: bold;
   line-height: 35px;
   margin-top: 12px;
@@ -150,7 +150,7 @@ ul{
 }
 
 
-.r,.r2,.r3,.r4,.r5,.r6,.r10,.r20,.r30,.r40,.r50{
+.r,.r2,.r3,.r4,.r5,.r6,.r10,.r15,.r20,.r30,.r40,.r50{
     color: #c71c1b;
     box-sizing: border-box;
     font-family: 黑体;
@@ -167,8 +167,7 @@ ul{
 }
 .result4{
     top: 48%;
-    width: 450px;
-    left: 42%;
+    left: 33%;
 }
 .r4{
     font-size: 118px;
@@ -178,7 +177,7 @@ ul{
     padding-right: 65px;
     background: no-repeat url("../resource/image/118.png");
     padding-top: 0px;
-    background-position-y: 10px;
+    background-position-y: 25px;
 }
 .result5{
     top: 44%;
@@ -232,6 +231,21 @@ ul{
   background-position-y: 11px;
 }
 
+.result15{
+  top: 43%;
+  left: 28%;
+}
+
+.r15{
+  font-size: 59px;
+  font-weight: bold;
+  height: 35px;
+  line-height: 35px;
+  margin-top: 12px;
+  background: no-repeat url(../resource/image/60.png);
+  padding: 10px 20px 110px 50px;
+}
+
 .result20{
   top: 41%;
   left: 27%;
@@ -261,7 +275,7 @@ ul{
     line-height: 35px;
     margin-top: 12px;
     background: no-repeat url("../resource/image/5.png");
-    padding: 15px 190px 5px 30px;
+    padding: 12px 190px 0px 30px;
     background-position-y: 11px;
 }
 
@@ -283,7 +297,7 @@ ul{
 }
 
 .result50{
-    top: 38%;
+    top: 37%;
     left: 30%
 }
 

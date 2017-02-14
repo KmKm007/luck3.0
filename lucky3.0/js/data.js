@@ -1,6 +1,6 @@
 function getLuckyData(callback){
 	$.ajax({
-		url: 'http://localhost:8888/Authentication/employee/list',
+		url: 'http://121.12.154.196:8888/Authentication/employee/list',
 		type: 'GET',
 		success: function (result) {
 			var data = [];

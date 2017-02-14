@@ -77,14 +77,14 @@ RollerView.prototype.getIndex = function() {
     var index = this.index;
     return index;
 }
-RollerView.prototype.showResult = function(amount, isSingle, array) {
-    this.showCommonPrice(amount, isSingle, array);
+RollerView.prototype.showResult = function(amount, isSingle, array, nameArray) {
+    this.showCommonPrice(amount, isSingle, array, nameArray);
 }
 
-RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
-    if (isSingle) {
-        amount = 1;
-    }
+RollerView.prototype.showCommonPrice = function(amount, isSingle, array, nameArray) {
+    // if (isSingle) {
+    //     amount = 1;
+    // }
     var className, resultClass, perRow;
     switch (amount) {
         case 50:
@@ -97,15 +97,20 @@ RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
             resultClass = 'result40';
             perRow = 4;
             break;
+        case 30:
+            className = 'r30';
+            resultClass = 'result30';
+            perRow = 3;
+            break;
         case 20:
           className = 'r20';
           resultClass = 'result20';
           perRow = 5;
           break;
-        case 30:
-            className = 'r30';
-            resultClass = 'result30';
-            perRow = 3;
+        case 15:
+            className = 'r15';
+            resultClass = 'result15';
+            perRow = 5;
             break;
         case 10:
             className = 'r10';
@@ -136,6 +141,7 @@ RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
     var result = this.result;
     var table = this.resultTable;
     var tr, td;
+    var content;
     result.className = resultClass;
     for (var i = 0, length = array.length; i < length; i++) {
         if (i % perRow == 0) {
@@ -143,7 +149,11 @@ RollerView.prototype.showCommonPrice = function(amount, isSingle, array) {
         }
         td = document.createElement("td");
         td.className = className;
-        td.innerHTML = array[i];
+        content = array[i];
+        if(nameArray){
+          content = content + '(' + nameArray[i] + ')';
+        }
+        td.innerHTML = content;
         tr.appendChild(td);
         if (i % perRow == (perRow - 1) || i == (array.length - 1)) {
             table.appendChild(tr);

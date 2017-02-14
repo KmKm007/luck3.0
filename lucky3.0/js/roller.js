@@ -187,16 +187,6 @@ Roller.prototype.stopMultiTimes = function(times) {
     this.stopRoll();
     var max;
     var random;
-    //if(times == 2){
-    //    for(var i = 0,length = roller.rollerModel.noWonPersonsList.length;i < length;i++){
-    //        if(roller.rollerModel.noWonPersonsList[i] == 55){
-    //            this.handleData(i);
-    //            break;
-    //        }
-    //    }
-    //
-    //}
-    //else{
     for (var i = 1; i < times; i++) {
         max = (this.rollerModel.noWonPersonsList.length - 1);
         random = Math.floor(Math.random() * max);
@@ -205,12 +195,18 @@ Roller.prototype.stopMultiTimes = function(times) {
     //}
     var flow = this.rollerModel.flow;
     var resultArray = this.rollerModel.resultCache;
-    this.rollerView.showResult(flow.amount, flow.isSingle, resultArray);
+
+    var nameArray = flow.amount <= 2 ? this.getNameArray(resultArray) : null;
+    this.rollerView.showResult(flow.amount, flow.isSingle, resultArray, nameArray);
     this.rollerView.updateCount(resultArray.length);
     if (this.config.isSendToServer) {
         var award = this.rollerModel.getAward();
         this.sendToServer(award, resultArray);
     }
+}
+
+Roller.prototype.getNameArray = function (resultArray) {
+    return this.rollerModel.getNameArray(resultArray);
 }
 
 Roller.prototype.stopForLuckyPrice = function() {
